@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let year = prompt('Введите год');
+        let month = prompt('Введите месяц');
+
+        let date = new Date(year, month-1, 32);
+        let days_in_month = 32 - date.getDate();
+
+        alert(days_in_month);
+    </script>
+</body>
+</html>
