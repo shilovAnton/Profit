@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        "use strict";
+
+        let x = +prompt('Задайте количество пикселей по ширине рисунка, x');
+        let y = +prompt('Задайте количество пикселей по высоте рисунка, y');
+
+        let S = x * y; //Количество пикселей рисунка
+        let memoryBit = S * 6; //Сколько требуется бит в памяти, 6 - это кол-во бит для 64 цветов
+        let memoryBayte = Math.ceil(memoryBit / 1024 / 8);
+
+        alert('Минимальное количество памяти для данного растрового рисунка = ' + memoryBayte + ' Кбайт');
+    </script>
+</body>
+</html>
