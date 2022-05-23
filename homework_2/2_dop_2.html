@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* Округлить до  второго знака после запятой, до целого числа, до
+        четвёртого знака после запятой, используя только умножение и деление */
+
+        function flootTwo(number) {
+            number = Number.parseInt(number*100)/100;
+            console.log(number);
+        }
+
+        function flootZerro(number) {
+            number = Number.parseInt(number);
+            console.log(number);
+        }
+
+        function flootFour(number) {
+            number = Number.parseInt(number*10000)/10000;
+            console.log(number);
+        }
+
+        let numberOne = 1.8432611;
+        let numberTwo = 1.83;
+        let numberThree = 5.1;
+
+        //Округлить до второго знака после запятой
+        flootTwo(numberOne);
+        flootTwo(numberTwo);
+        flootTwo(numberThree);
+        console.log('\n');
+
+        //Округлить до целого значения
+        flootZerro(numberOne);
+        flootZerro(numberTwo);
+        flootZerro(numberThree);
+        console.log('\n');
+
+        //Округлить до четвертого знака после запятой
+        flootFour(numberOne);
+        flootFour(numberTwo);
+        flootFour(numberThree);
+    </script>
+</body>
+</html>
