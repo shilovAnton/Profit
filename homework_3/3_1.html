@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        "use strict";
+        let r = +prompt('Введите внутренний радиус полого цилиндра');
+        let R = +prompt('Введите внешний радиус полого цилиндра, которуй должен быть боьлше внутреннего');
+        let h = R + r;
+
+        //Объем полого цилиндра
+        let V = Math.PI * h**2 * (R - r);
+
+        //Площадь поверхностей полого цилиндра
+        let S = 2 * Math.PI * h * (R - r + h);
+
+        alert('Объём цилиндра ' + V.toFixed(2) + '\nПлощадь поверхностей цилиндра ' + S.toFixed(2));
+    </script>
+</body>
+</html>
