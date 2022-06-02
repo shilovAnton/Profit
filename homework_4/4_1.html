@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        "use strict";
+        let _Ax = +prompt('Введите значение Ax');
+        let _Ay = +prompt('Введите значение Ay');
+        let _Bx = +prompt('Введите значение Bx');
+        let _By = +prompt('Введите значение By');
+        let _Cx = +prompt('Введите значение Cx');
+        let _Cy = +prompt('Введите значение Cy');
+        let _Ox = 0;
+        let _Oy = 0;
+
+        //Вычисляем длины отрезков
+        let OA = Math.sqrt((_Ox - _Ax)**2 + (_Oy - _Ay)**2);
+        let OB = Math.sqrt((_Ox - _Bx)**2 + (_Oy - _By)**2);
+        let AC = Math.sqrt((_Ax - _Cx)**2 + (_Ay - _Cy)**2);
+        let BC = Math.sqrt((_Bx - _Cx)**2 + (_By - _Cy)**2);
+
+        //Вычисляем площади геометр. фигур
+        let areaCircle = Math.PI * OA**2;
+        let areaSquare = OB**2;
+        let areaRectangle = AC * BC;
+
+        //Сравниваем площади
+        let maxArea_1 = areaCircle;
+        let maxArea_2;
+        let maxArea_3;
+        let name_1 = 'круг';
+        let name_2;
+
+        if (areaSquare > maxArea_1) {
+            maxArea_1 = areaSquare;
+            name_1 = 'квадрат';
+        } else if(areaSquare === maxArea_1) {
+            maxArea_2 = areaSquare;
+            name_2 = 'квадрат';
+        }
+
+        if (areaRectangle > maxArea_1) {
+            maxArea_1 = areaRectangle;
+            name_1 = 'прямоугольник';
+        } else if (areaRectangle === maxArea_1 && areaRectangle !== maxArea_2) {
+            maxArea_2 = areaSquare;
+            name_2 = 'прямоугольник';
+        } else if (areaRectangle === maxArea_1 && areaRectangle === maxArea_2) {
+            maxArea_3 = areaRectangle;
+        }
+
+        //Вывод
+        if (maxArea_1 !== maxArea_2) {
+            alert('Наибольшая площадь у фигуры = ' + name_1);
+        } else if (maxArea_1 === maxArea_2 && maxArea_1 !== maxArea_3) {
+            alert('Наибольшая площадь у фигур = ' + name_1 + ' и ' + name_2);
+        } else if (maxArea_1 === maxArea_2 && maxArea_1 === maxArea_3) {
+            alert('Все фигуры равны по площади');
+        }
+    </script>
+</body>
+</html>

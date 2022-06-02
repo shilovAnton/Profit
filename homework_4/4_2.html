@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        "use strict";
+
+        let _Ax = +prompt('Введите значение Ax');
+        let _Ay = +prompt('Введите значение Ay');
+        let _Bx = +prompt('Введите значение Bx');
+        let _By = +prompt('Введите значение By');
+        let _Ox = 0;
+        let _Oy = 0;
+
+        //Вычисляем принадлежность точк к четвертям
+        let quarterA = (_Ax > 0 && _Ay > 0) ? 'принадлежит 1-ой':
+            (_Ax < 0 && _Ay > 0) ? 'принадлежит 2-ой':
+            (_Ax < 0 && _Ay < 0) ? 'принадлежит 3-ей':
+            (_Ax > 0 && _Ay < 0) ? 'принадлежит 4-ей':
+            'не принадлежит ни одной';
+
+        let quarterB = (_Bx > 0 && _By > 0) ? 'принадлежит 1-ой':
+            (_Bx < 0 && _By > 0) ? 'принадлежит 2-ой':
+            (_Bx < 0 && _By < 0) ? 'принадлежит 3-ей':
+            (_Bx > 0 && _By < 0) ? 'принадлежит 4-ей':
+            'не принадлежит ни одной';
+
+        //Вычисляем длины отрезков и сравниваем
+        let OA = Math.sqrt((_Ox - _Ax)**2 + (_Oy - _Ay)**2);
+        let OB = Math.sqrt((_Ox - _Bx)**2 + (_Oy - _By)**2);
+
+        let maxSegment = (OA > OB) ? 'Точка A(x ; y) наиболее удалена от начала координат.':
+            (OA === OB) ? 'Точки равноудалены от начала координат.':
+            'Точка B(x ; y) наиболее удалена от начала координат.';
+
+        //Вывод
+        alert('Точка А ' + quarterA + ' четверти.\n'
+            + 'Точка В ' + quarterB + ' четверти.\n\n'
+            + maxSegment);
+    </script>
+</body>
+</html>

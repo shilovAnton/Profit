@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        "use strict";
+
+        let A = +prompt('Введите значение числа А');
+        let B = +prompt('Введите значение числа В');
+        let C = +prompt('Введите значение числа С');
+
+        //Проверка на целое и на несовпадение чисел
+        if (Number.isInteger(A) && Number.isInteger(B) && Number.isInteger(C)) {
+            if (A !== B && A !== C && B !== C) {
+
+                //Находим макс, мин и среднее значение
+                let max;
+                let mean;
+                let min;
+
+                if (A > B && A > C) {
+                    if (B > C) {
+                        max = A;
+                        mean = B;                    
+                        min = C;                        
+                    } else {
+                        max = A;
+                        mean = C;                    
+                        min = B; 
+                    }
+                }
+                if (B > A && B > C) {
+                    if (A > C) {
+                        max = B;
+                        mean = A;                    
+                        min = C;                        
+                    } else {
+                        max = B;
+                        mean = C;                    
+                        min = A; 
+                    }
+                }
+                if (C > A && C > B) {
+                    if (A > B) {
+                        max = C;
+                        mean = A;                    
+                        min = B;                        
+                    } else {
+                        max = C;
+                        mean = B;                    
+                        min = A; 
+                    }
+                }
+                
+                //Сравниваем удвоенную разность макс и мин с произв. мин и среднего
+                let dubleDifferenceMaxMin = (max - min) * 2;
+                let multiplyMinMean = min * mean;
+                let answer;
+
+                if (dubleDifferenceMaxMin > multiplyMinMean) {
+                    answer = 'БОЛЬШЕ произведения';
+                } else if (dubleDifferenceMaxMin < multiplyMinMean) {
+                    answer = 'МЕНЬШЕ произведения';
+                } else {
+                    answer = 'РАВНО произведению';
+                }
+
+                //Вывод
+                alert('Удвоенная разность большего и меньшего числа \n'
+                    + answer + ' меньшего и среднего!');
+
+            } else {
+                alert('Числа не должны совпадать!');
+                window.location.reload();
+            }
+        } else {
+            alert('Введите целые числа!');
+            window.location.reload();
+        }
+
+    </script>
+</body>
+</html>

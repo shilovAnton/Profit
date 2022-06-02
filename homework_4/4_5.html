@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        "use strict";
+
+        let _x = +prompt('Введите значение - x');
+        let _y;
+
+        //Проверка на ввод (экспериментальная) и определение функции
+        if (!isNaN(_x)) {
+            if (_x <= -1) {
+                _y = -1 *_x**2 - 4 * _x - 3;
+            } else if (_x <= 1) {
+                _y = _x + 1;
+            } else {
+                _y = 2 / _x;
+            }
+            alert('f(x) = ' + _y);            
+        } else {
+            alert('Не корректный ввод!');
+            window.location.reload();
+        }
+    </script>
+</body>
+</html>
