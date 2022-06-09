@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        "use strict";
+
+        let x = +prompt('Введите = x');
+        let N = +prompt('Введите = N');
+
+        let sum = x;
+        
+            if (sum > N) {
+                alert(sum);
+            } else {
+                let level = 2;
+
+                do {
+                sum += (x**level + level)/(x + level - 1);
+                level++;
+                } while (sum <= N);
+
+                alert(sum);   
+            }
+    </script>
+</body>
+</html>

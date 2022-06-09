@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        "use strict";
+
+        let N = +prompt('Введите = N');
+        let count = 0;
+
+        if (!isNaN(N) && N > 1 && Number.isInteger(N)) {
+            let answer = Math.sqrt(2);
+
+            for (let K = 2; answer <= N; K++) {
+                answer = Math.sqrt(K + answer);
+                count++;
+            }
+            alert('Количество корней = ' + count + ' \nРузультат = ' + answer);
+        } else {
+            alert('Введите целое число больше еденицы!');
+        }
+    </script>
+</body>
+</html>

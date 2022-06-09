@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        "use strict";
+
+        let x = 1;
+        let y;
+
+        while (x <= 3) {
+            y = Math.sqrt(x) / (x + 1);
+            y = y.toFixed(4);
+            document.write('х = ' + x + ';   y = ' + y + '</br>');
+
+            x = (x * 10 + 2) / 10;   
+        }  
+    </script>
+</body>
+</html>
