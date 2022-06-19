@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        "use strict";
+
+        alert('Программа выводит положительные числа в порядке убывания');
+
+        let flag = +prompt('Введите 1, если хотите задать свою числовую последовательность!');
+        let array = [];
+
+        //Предоставляем выбор задать массив самостоятельно
+        if (flag == 1) {
+            let N = +prompt('Введите количество элементов массива.');
+            for (let i = 0; i < N; i++) {
+                array[i] = +prompt('Введите элемент массива!');
+            }
+        } else {
+            array = [1, 2, -3, 6, -4, 89, 6, 5, 58, 7, 9];
+        }
+
+        //Создаём массив с положительными значениями
+        let positive = [];
+        for (let k = 0; k < array.length; k++) {
+            if (array[k] > 0) {
+                positive.push(array[k]);
+            }
+        }
+
+        //Сортируем массив бинарными вставками
+        let x;
+        let leftBorder;
+        let rightBorder;
+        let midl;
+
+        for (let i = 1; i < positive.length; i++) {
+            x = positive[i];
+            leftBorder = 0;
+            rightBorder = i-1;
+
+            while (leftBorder <= rightBorder) {
+                midl = Math.floor((leftBorder + rightBorder) / 2);
+                if (x > positive[midl]) {
+                    rightBorder = midl-1;
+                } else {
+                    leftBorder = midl+1;
+                }
+            }                  
+
+            if (leftBorder > rightBorder) {
+                for (let j = i-1; j >= leftBorder; j--) {
+                    positive[j+1] = positive[j];
+                }
+                positive[leftBorder] = x;
+                }
+        }
+    
+        //Вывод
+        alert('Положительные, в порядке убывания значения = ' + positive);
+    </script>
+</body>
+</html>

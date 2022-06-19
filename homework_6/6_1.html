@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        "use strict";
+
+        alert('Программа выводит номера ячеек массива, равных нулевому значению!');
+
+        let flag = +prompt('Введите 1, если хотите задать свою числовую последовательность!');
+        let array = [];
+
+        //Предоставляем выбор задать массив самостоятельно
+        if (flag == 1) {
+            let N = +prompt('Введите количество элементов массива.');
+                for (let i = 0; i < N; i++) {
+                    array[i] = +prompt('Введите элемент массива');
+                }
+        } else {
+            array = [1, 2, 3, 0, 4, 0, 6, 0];
+        }
+
+        //Заполняем массив нулевыми индексами
+        let NumberArr = [];
+        for (let i = 0; i < array.length; i++) {
+            if (array[i] == 0) {
+                NumberArr.push(i);
+            }
+        }
+
+        //Вывод
+        alert('Номера нулевых элементов в массиве = ' + NumberArr);
+    </script>
+</body>
+</html>

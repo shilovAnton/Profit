@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        "use strict";
+
+        alert('Программа выводит чётные числа заданной последовательности!');
+
+        let flag = +prompt('Введите 1, если хотите задать свою числовую последовательность!');
+        let array = [];
+
+        //Предоставляем выбор задать массив самостоятельно
+        if (flag == 1) {
+            let N = +prompt('Введите количество элементов массива.');
+                for (let i = 0; i < N; i++) {
+                    let x = +prompt('Введите элемент массива (натуральное число!)');
+                    if (Number.isInteger(x) && x > 0) {
+                        array[i] = x;
+                    } else {
+                        alert('Введите натуральное число!');
+                    }
+                }
+        } else {
+            array = [1, 2, 3, 6, 4, 56, 6, 5];
+        }
+
+        //Заполняем массив нулевыми индексами
+        let evenNumber = [];
+        for (let i = 0; i < array.length; i++) {
+            if (array[i] % 2 == 0) {
+                evenNumber.push(array[i]);
+            }
+        }
+
+        //Вывод
+        if (evenNumber.length != 0) {
+            alert('Чётные числа заданной последовательности = ' + evenNumber);
+        } else {
+            alert('Чётных чисел нет!');
+        }
+    </script>
+</body>
+</html>

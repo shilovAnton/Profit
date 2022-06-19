@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        "use strict";
+
+        alert('Программа выводит количество и произведение элементов, между max и min!');
+
+        let flag = +prompt('Введите 1, если хотите задать свою числовую последовательность!');
+        let array = [];
+
+        //Предоставляем выбор задать массив самостоятельно
+        if (flag == 1) {
+            let N = +prompt('Введите количество элементов массива.');
+            for (let i = 0; i < N; i++) {
+                array[i] = +prompt('Введите элемент массива!');
+            }
+        } else {
+            array = [1, 2, 3, 6, 4, 56, 6, 5, 58, 7, 9];
+        }
+
+        //Находим мах и min и их места в массиве
+        let max = array[0];
+        let min = array[0];
+        let maxIndex = 0;
+        let minIndex = 0;
+        for (let i = 1; i < array.length; i++) {
+            if (max < array[i]) {
+                max = array[i];
+                maxIndex = i;
+            }
+            if (min > array[i]) {
+                min = array[i];
+                minIndex = i;
+            }
+        }
+
+        if (maxIndex < minIndex) {
+            let tmp = maxIndex;
+            maxIndex = minIndex;
+            minIndex = tmp;
+        }
+
+        let amount = maxIndex - minIndex;
+
+        //Считаем количество элементов и произведение
+        let proisv = 1;
+            for (let i = minIndex+1; i < maxIndex; i++) {
+                proisv *= array[i];
+            }
+        
+        //Вывод
+        if (amount > 0) {
+            alert('Произведение элементов = ' + proisv);
+        } else {
+            alert('Нет элементов между max и min!');
+        }
+    </script>
+</body>
+</html>

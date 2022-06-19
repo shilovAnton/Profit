@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        "use strict";
+
+        alert('Программа выводит наименьшее значение из наиболее встречающихся');
+
+        let flag = +prompt('Введите 1, если хотите задать свою числовую последовательность!');
+        let array = [];
+
+        //Предоставляем выбор задать массив самостоятельно
+        if (flag == 1) {
+            let N = +prompt('Введите количество элементов массива.');
+            for (let i = 0; i < N; i++) {
+                array[i] = +prompt('Введите элемент массива!');
+            }
+        } else {
+            array = [1, 2, -3, 6, -4, 89, 6, 5, 58, 7, 9, 1, 1, 2, 2];
+        }
+
+        //Сортируем массив
+        for (let i = 0; i < array.length-1; i++) {
+            for (let j = 0; j < array.length-i; j++) {
+                if (array[j] > array[j+1]) {
+                    let tmp = array[j+1];
+                    array[j+1] = array[j];
+                    array[j] = tmp;   
+                }
+            }
+        }
+
+        //Создаём массив рейтинга
+        let rating = [array.length];
+        for (let i = 0; i < array.length; i++) {
+            let count = 0;
+            for (let j = 0; j < array.length; j++) {
+                if (array[i] == array[j]) {
+                    count++;
+                }
+            }
+            rating[i] = count;
+        }
+
+        //Находим наиболее повторяющееся
+        let maxRating = rating[0];
+        for (let i = 0; i < rating.length; i++) {
+            if (maxRating < rating[i]) {
+                maxRating = rating[i];
+            }
+        }
+
+        let min;
+        for (let i = 0; i < array.length; i++) {
+            if (rating[i] == maxRating) {
+                min = array[i];
+                break;
+            }
+        }
+
+        //Вывод
+        alert(min);
+    </script>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        "use strict";
+
+        let N = +prompt('Задайте порядок матрицы!');
+        let matrixT = [N];
+        let randNumber;
+        let transporentMatrixT = [N];
+        let matrixProisv3 = [N];
+        let matrixOne = [N];
+        let matrixT2 = [N];
+        let matrixSum = [N];
+
+        //Предоставляем выбор задать матрицу самостоятельно        
+        let flag = +prompt('Введите 1, если хотите заполнить матрицу самостоятельно!');
+
+        //Заполняем верхнетреугольную матрицу и инициализируем матрицы
+        for (let i = 0; i < N; i++) {
+            matrixT[i] = [N];
+            transporentMatrixT[i] = [N];
+            matrixProisv3[i] = [N];
+            matrixOne[i] = [N];
+            matrixT2[i] = [N];
+            matrixSum[i] = [N];
+
+            for (let j = 0; j < N; j++) {
+                if (j >= i && flag == 1) {
+                    matrixT[i][j] = +prompt('Введите значение элемента верхнетреугольной матрицы!');
+                } else if (j >= i && flag != 1) {
+                    let min = 0;
+                    let max = 9;
+                    randNumber = Math.round(Math.random() * (max - min) + min);
+                    matrixT[i][j] = randNumber; 
+                } else {
+                    matrixT[i][j] = 0;
+                }
+            }
+        }
+
+        //Заполняем еденичную матрицу
+        for (let i = 0; i < N; i++) {
+            for (let j = 0; j < N; j++) {
+                if (i == j) {
+                    matrixOne[i][j] = 1;
+                } else {
+                    matrixOne[i][j] = 0;
+                }
+            }
+        }
+
+        //Транспонирование матрицы Т
+        for (let i = 0; i < N; i++) {
+            for (let j = 0; j < N; j++) {
+                transporentMatrixT[j][i] = matrixT[i][j];
+            }
+        }
+
+        //Умножение транспорированной матрицы на 3
+        for (let i = 0; i < N; i++) {
+            for (let j = 0; j < N; j++) {
+                matrixProisv3[i][j] = transporentMatrixT[i][j] * 3;
+            }
+        }
+
+        //Возведение матрицы Т в квадрат
+        for (let i = 0; i < N; i++) {
+            for (let j = 0; j < N; j++) {
+                let sum = 0;
+                for (let k = 0; k < N; k++) {
+                    sum += matrixT[j][k] * matrixT[k][i];
+                }
+                matrixT2[j][i] = sum;
+            }
+        }
+
+        //Сумма матриц
+        for (let i = 0; i < N; i++) {
+            for (let j = 0; j < N; j++) {
+                matrixSum[i][j] = matrixT2[i][j] + matrixProisv3[i][j] + matrixOne[i][j];
+            }
+        }
+
+        //Вывод
+        document.write('<h1>&emsp;Матрица Т</h1>');
+        for (let i = 0; i < N; i++) {
+            for (let j = 0; j < N; j++) {
+                document.write(matrixT[i][j] + '&emsp;&emsp;');
+            }
+            document.write('</br></br>');
+        }
+
+        document.write('<h1>&emsp;Матрица Т^T</h1>');
+        for (let i = 0; i < N; i++) {
+            for (let j = 0; j < N; j++) {
+                document.write(transporentMatrixT[i][j] + '&emsp;&emsp;');
+            }
+            document.write('</br></br>');
+        }
+
+        document.write('<h1>&emsp;Матрица Т^T * 3</h1>');
+        for (let i = 0; i < N; i++) {
+            for (let j = 0; j < N; j++) {
+                document.write(matrixProisv3[i][j] + '&emsp;&emsp;');
+            }
+            document.write('</br></br>');
+        }
+
+        document.write('<h1>&emsp;Еденичная матрица</h1>');
+        for (let i = 0; i < N; i++) {
+            for (let j = 0; j < N; j++) {
+                document.write(matrixOne[i][j] + '&emsp;&emsp;');
+            }
+            document.write('</br></br>');
+        }
+
+        document.write('<h1>&emsp;Матрица Т^2</h1>');
+        for (let i = 0; i < N; i++) {
+            for (let j = 0; j < N; j++) {
+                document.write(matrixT2[i][j] + '&emsp;&emsp;');
+            }
+            document.write('</br></br>');
+        }
+
+        document.write('<h1>&emsp;Сумма матриц(окончательный ответ)</h1>');
+        for (let i = 0; i < N; i++) {
+            for (let j = 0; j < N; j++) {
+                document.write(matrixSum[i][j] + '&emsp;&emsp;');
+            }
+            document.write('</br></br>');
+        }
+    </script>
+</body>
+</html>
