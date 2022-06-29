@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        "use strict";
+
+        /**
+         * Рекурсивная функция переводяшая массив символов в строку.
+         * 
+         * @param {string[]} formatText Массив символов.
+         * @param {number} n Длинна массива.
+         * 
+         * @return {string} text Строка.
+        */
+        function str(formatText, n) {
+            let text = '';
+            if (n > -1) {
+                text = str(formatText, n-1) + formatText[n];
+            }
+
+            return text;
+        }
+
+        /**
+         * Удаляет лишние пробелы в тексте.
+         * 
+         * @param {string} text Текст.
+         *
+         * @return {string} text Отформатированный текст.
+        */
+        function deleteSpace(text) {
+            let formatText = [];
+
+            //Переписываем посимвольно в новый массив, пропуская повторные пробелы
+            for (let i = 0; i < text.length; i++) {
+                if (text[i] == ' ' && text[i+1] == ' ') {
+                    continue;
+                } else {
+                    formatText.push(text[i]);
+                }
+            }
+            text = str(formatText, formatText.length-1);
+            return text;
+        }
+
+        //_________________________________________________________________
+
+        alert('Программа форматирует текст, удаляя лишние пробелы!');
+
+        let text = 'В    этом     тексте      были        лишние     пробелы!';
+
+        text = deleteSpace(text);
+
+        alert(text);
+    </script>
+</body>
+</html>

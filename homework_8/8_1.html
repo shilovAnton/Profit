@@ -85,21 +85,28 @@
         }
 
         //Вывод________________________________________________
-        document.write('<h1>&emsp;Матрица W</h1>');
-        for (let i = 0; i < M; i++) {
-            for (let j = 0; j < N; j++) {
-                document.write(W[i][j] + '&emsp;&emsp;');
+
+        /**
+         * Распечатывает матрицу на экран.
+         * 
+         * @param {array} matrix Матрица.
+         * @param {string} name Имя матрицы.
+         * @param {number} M Количество строк.
+         * @param {number} N Количество столбцов.
+         * 
+        */
+        function printMatrix(matrix, name, M, N) {
+            document.write('<h1>&emsp;Матрица ' + name + '</h1>');
+            for (let i = 0; i < M; i++) {
+                for (let j = 0; j < N; j++) {
+                    document.write(matrix[i][j] + '&emsp;&emsp;');
+                }
+                document.write('</br></br>');
             }
-            document.write('</br></br>');
         }
 
-        document.write('<h1>&emsp;Матрица WW</h1>');
-        for (let i = 0; i < M; i++) {
-            for (let j = 0; j < N; j++) {
-                document.write(WW[i][j] + '&emsp;&emsp;');
-            }
-            document.write('</br></br>');
-        }
+        printMatrix(W, 'W', M, N);
+        printMatrix(WW, 'WW', M, N);
     </script>
 </body>
 </html>
