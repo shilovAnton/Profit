@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        "use strict";
+
+        /**
+         * Проверяет вводимое значение на целое, в заданном диапозоне.
+         * 
+         * @param {string} mesege Сообщение пользователю.
+         * 
+         * @return {number} num Возвращает проверенное значение.
+        */
+        function chekNumber(message) {
+            let num;
+            do {
+                num = +prompt(message);
+                if (isNaN(num) || !Number.isInteger(num) || num < 0 || num > 100) {
+                    alert('Ввeдите целое число, от нуля до ста!')
+                }
+            } while (isNaN(num) || !Number.isInteger(num) || num < 0 || num > 100);
+            return num;        
+        }
+
+        /**
+         * Функция генерации графа, в представлении матрицы смежности.
+         * 
+         * @param {number} N Количество узлов
+         * 
+         * @return {number[]} matrix Сгенерированная треугольная матрица, без петель.
+        */
+        function initGraf(N) {
+            let matrix = [];
+            for (let i = 0; i < N; i++) {
+                matrix[i] = [];
+                for (let j = 0; j < N; j++) {
+                    if (j <= i) {
+                        matrix[i][j] = 0;
+                    } else {
+                        matrix[i][j] = Math.round(Math.random());
+                    }
+                }
+            }
+            return matrix;
+        }
+
+        /**
+         * Распечатывает матрицу на экран.
+         * 
+         * @param {array} matrix Матрица.
+         * @param {string} name Имя матрицы.
+        */
+        function printMatrix(matrix, name) {
+            document.write('<h1>' + name + '</h1>');
+            for (let i = 0; i < matrix.length; i++) {
+                for (let j = 0; j < matrix.length; j++) {
+                    document.write(matrix[i][j] + '&emsp;&emsp;');
+                }
+                document.write('</br></br>');
+            }
+        }
+
+        /**
+         * Считает алгебраическую сумму всех элементов матрицы.
+         * 
+         * @param {number[]} matrix Матрица.
+         * 
+         * @return {number} count Сумма элементов.
+        */
+        function sumMatrix(matrix) {
+            let count = 0;
+            for (let i = 0; i < matrix.length; i++) {
+                for (let j = 0; j < matrix.length; j++) {
+                    count += matrix[i][j];
+                }
+            }
+            return count;
+        }
+        //____________________________________________________
+
+        alert('Программа генерит граф, в представлении симметричной матрицы, и подсчитывает рёбра!');
+        let N = chekNumber('Задайте количество городов.');
+
+        //Генерация графа
+        let graf = initGraf(N);
+
+        //Считаем сумму дорог
+        let sum = sumMatrix(graf);
+
+        //Вывод
+        printMatrix(graf, 'Граф городов, и дорог между ними');
+        alert('Количество дорог на планете \"Neptune\" = ' + sum)
+    </script>
+</body>
+</html>

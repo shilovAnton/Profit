@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        "use strict";
+
+        /**
+         * Проверяет вводимое значение.
+         * 
+         * @param {string} mesege Сообщение пользователю.
+         * 
+         * @return {number} num Возвращает проверенное значение.
+        */
+        function chekNumber(message) {
+            let num;
+            do {
+                num = +prompt(message);
+                if (isNaN(num) || num < 0) {
+                    alert('Ввeдите не отрицательное число!')
+                }
+            } while (isNaN(num) || num < 0);
+            return num;        
+        }
+
+        class Worker {
+
+            constructor(name, surname, rate, days) {
+
+            this.name = name;
+            this.surname = surname;
+            this.rate = rate;//ставка за день работы
+            this.days = days;//количество отработанных дней
+            }
+
+            //зарплата работника
+            getSalary() {
+            return this.rate * this.days;
+            }
+        }
+        //___________________________________________________________
+
+        let name = prompt('Введите имя рабочего');
+        let surname = prompt('Введите фамилию рабочего');
+        let rate = chekNumber('Задайте ставку за день работы');
+        let days = chekNumber('Введите количество отработанных дней');
+
+        let worker = new Worker(name, surname, rate, days);
+
+        alert(surname + ' ' + name + '\n________________________\nЗаработная плата = ' + worker.getSalary());
+    </script>
+</body>
+</html>

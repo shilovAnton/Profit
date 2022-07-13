@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        "use strict";
+        
+        // function str(formatText, n) {
+        //     let text = '';
+        //     if (n > 0) {
+        //         text = str(formatText, n-1) + formatText[n];
+        //     }
+
+        //     return text;
+        // }
+
+        // let text = '    В    этом     тексте      есть        лишние     пробелы!    ';
+        // let formatText = [];
+
+        // for (let i = 0; i < text.length-1; i++) {
+        //     if (text[i] == ' ' && text[i+1] == ' ') {
+        //         continue;
+        //     } else {
+        //         formatText.push(text[i]);
+        //     }
+        // }
+        // text = str(formatText, formatText.length -1);
+
+        // alert(text);
+
+
+
+        // let array = [];
+        // for(let i = 0; i < 2; i++) {
+        //     array[i] = prompt('Введите число');
+        // }
+
+        // let numbers = [];
+
+        // for(let i = 0; i < array.length; i++)  {
+        //     numbers[i] = +array[i];
+        // }
+
+        // alert(numbers[0] + numbers[1]);
+
+        // let N =  prompt (" ", 123);
+        // let sumN = 0;
+        // let arr_N = N.match(/[1-9]/g);
+        //     for (let i = 0; arr_N.length>i; i++) {
+        //         arr_N[i] = Number(arr_N[i]);
+        //         sumN+=arr_N[i]  
+        //     }
+        //     alert (sumN);
+
+        //let number1 = +prompt('Введите первое число');
+        //let number2 = +prompt('Введите втрое число');
+
+        //alert(number1);
+
+
+        consttext = 'Мне нравится язык JavaScript!';
+asyncfunction digestMessage(message) {
+constmsgUint8 = new TextEncoder().encode(message);
+consthashBuffer= await crypto.subtle.digest('SHA-256', msgUint8);
+consthashArray= Array.from(new Uint8Array(hashBuffer));
+consthashHex= hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+return hashHex;
+}
+digestMessage(text).then(digestHex=> console.log(digestHex));
+
+    </script>
+</body>
+</html>

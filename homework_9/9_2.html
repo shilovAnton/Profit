@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        "use strict";
+
+        /**
+         * Проверяет вводимое значение на целое, в заданном диапозоне.
+         * 
+         * @param {string} mesege Сообщение пользователю.
+         * 
+         * @return {number} num Возвращает проверенное значение.
+        */
+        function chekNumber(message) {
+            let num;
+            do {
+                num = +prompt(message);
+                if (isNaN(num) || !Number.isInteger(num) || num < 1 || num > 10) {
+                    alert('Ввeдите целое число, от одного до десяти!')
+                }
+            } while (isNaN(num) || !Number.isInteger(num) || num < 1 || num > 10);
+            return num;        
+        }
+
+        //____________________________________________________
+
+        alert('Программа ищет минимальный путь между двумя вершинами!');
+
+        //Граф типа: graph[node] = [visited, [path], сосед, сосед];
+        let graph = [];
+        graph[1] = [false, [], 2, 6];
+        graph[2] = [false, [], 1, 9];
+        graph[3] = [false, [], 4, 9];
+        graph[4] = [false, [], 5, 6, 7];
+        graph[5] = [false, [], 4, 10];
+        graph[6] = [false, [], 1, 4, 7];
+        graph[7] = [false, [], 4, 6, 8];
+        graph[8] = [false, [], 7];
+        graph[9] = [false, [], 2, 3, 10];
+        graph[10] = [false, [], 5, 9];
+
+        //Очередь
+        let queue = [];
+
+        //Задание начальной и конечной вершины
+        let start;
+        let finish;
+        do {
+            start = chekNumber('Задайте первую вершину.');
+            finish = chekNumber('Задайте вторую вершину.');
+            if (start == finish) {
+                alert('Вершины не должны совпадать!')
+            }            
+        } while (start == finish);
+
+        //добавляем соедей начальной вершины в очередь первого круга
+        queue = [];
+        for (let i = 2; i < graph[start].length; i++) {
+            let neighbor = graph[start][i];//соседи
+            queue.push(neighbor);
+            //записываем путь, откуда к ним пришли
+            graph[neighbor][1].push(start);
+        }
+        //отмечаем начальную вершину - просмотренной
+        graph[start][0] = true;
+
+        let L = 1;
+
+        //начинаем поиск в ширину, каждый цикл - один шаг
+        while(queue.length > 0) {
+            let node = queue.shift();//достаём вершину предыдущего круга
+            //let tmp = [];//временный массив круга
+            //for (let i = 0; i < queue.length; i++) {//смотрим вершины круга
+                let viewed = graph[node[0]];
+                if (!viewed) { //если вершина не просмотрена
+                    if (queue[i] == finish) {
+                        //пушем в путь точку финиш
+                        //let path = node[i];
+                        graph[path][1].push(finish);
+                        alert('Длина кратчайшего пути = ' + L + ', путь = ' + graph[nodes[i]][1].join('-'));
+                        break;
+                    } else {
+                        for (let j = 2; j < graph[nodes[i]].length; j++) { //смотрим соседей вершины
+                            //записываем путь, откуда к ним пришли
+                            graph[graph[nodes[i]][j]][1] = graph[nodes[i]][1];
+                            graph[graph[nodes[i]][j]][1].push(nodes[i]);
+                            //добавляем соседей вершины во временный массив
+                            tmp.push(graph[nodes[i]][j]);
+                            graph[nodes[i]][0] = true;
+                        }
+                    }                    
+                }
+                
+            //}
+            L++;
+            queue.push(tmp);
+        }
+    </script>
+</body>
+</html>

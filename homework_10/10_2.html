@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        "use strict";
+
+        /**
+         * Проверяет вводимое значение.
+         * 
+         * @param {string} mesege Сообщение пользователю.
+         * 
+         * @return {number} num Возвращает проверенное значение.
+        */
+        function chekNumber(message) {
+            let num;
+            do {
+                num = +prompt(message);
+                if (isNaN(num) || num <= 0 || !Number.isInteger(num)) {
+                    alert('Ввeдите целое число, больше нуля!')
+                }
+            } while (isNaN(num) || num <= 0 || !Number.isInteger(num));
+            return num;        
+        }
+        //____________________________________________________
+
+        class BankAccount {
+
+            constructor(id, contributor, sum, percentYear) {
+
+            this.id = id;
+            this.contributor = contributor;//вкладчик
+            this.sum = sum;
+            this.percentYear = percentYear;
+            }
+
+            get sum() {
+                return this._sum;
+            }
+
+            set sum(value) {
+                this._sum = value;
+            }
+
+            //начисление процентов
+            get accrueInterest() {
+                this.sum = (this.sum * (100 + this.percentYear)) / 100;
+                return this.sum;
+            }
+
+            //внесение средств
+            get addSum() {
+                this.sum += chekNumber('Введите сумму пополнения');
+                return this.sum;
+            }
+        }
+        //___________________________________________________________
+
+        alert('Программа создаёт три экземпляра класса BankAccount, и позволяет управлять счетами.');
+
+        let arr = [];
+
+        arr[0] = new BankAccount(44689, 'Шилов Антон', 5600, 18);
+        arr[1] = new BankAccount(45889, 'Попов Иван', 96000, 13);
+        arr[2] = new BankAccount(45680, 'Кузнецов Николай', 85500, 11);
+
+        let isYea = confirm("Хотите произвести манипуляции с счетами?");
+        if(isYea) {
+
+            let user;
+            do {
+                user = chekNumber('Введите цифру, для выбора вкладчика:\n'
+                                + '1. Шилов Антон\n'
+                                + '2. Попов Иван\n'
+                                + '3. Кузнецов Николай');
+                                             
+            } while (user < 1 || user > 3);
+
+            let account;
+            for (let i = 0; i < arr.length; i++) {
+                if (i == user-1) {
+                    account = arr[i];
+                    break;
+                }
+            }
+
+            let operacion;
+            do {
+                operacion = chekNumber('Введите цифру, для выбора операции:\n'
+                                        + '1. Внести средства\n'
+                                        + '2. Начислить проценты');
+            } while (operacion < 1 || operacion > 2);
+
+            if (operacion == 1) {
+                account.addSum;
+            } else {
+                account.accrueInterest;
+            }
+        }
+
+        for (let i = 0; i < arr.length; i++) {
+            document.write('Номер счёта: ' + arr[i].id + '</br>');
+            document.write('Вкладчик: ' + arr[i].contributor + '</br>');
+            document.write('Денежная сумма: ' + arr[i].sum + '</br>');
+            document.write('Годовой процент: ' + arr[i].percentYear + '</br>');
+            document.write('- - - - - - - - - - - - - - - - - - - - - - - - - - - </br>');
+            document.write('- - - - - - - - - - - - - - - - - - - - - - - - - - - </br></br></br>');
+        }
+    </script>
+</body>
+</html>
