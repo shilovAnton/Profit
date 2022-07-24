@@ -63,16 +63,66 @@
         //alert(number1);
 
 
-        consttext = 'Мне нравится язык JavaScript!';
-asyncfunction digestMessage(message) {
-constmsgUint8 = new TextEncoder().encode(message);
-consthashBuffer= await crypto.subtle.digest('SHA-256', msgUint8);
-consthashArray= Array.from(new Uint8Array(hashBuffer));
-consthashHex= hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-return hashHex;
-}
-digestMessage(text).then(digestHex=> console.log(digestHex));
+        // const text = 'Мне нравится язык JavaScript!';
+        // async function digestMessage(message) {
+        //     const msgUint8 = new TextEncoder().encode(message);
+        //     const hashBuffer= await crypto.subtle.digest('SHA-256', msgUint8);
+        //     const hashArray= Array.from(new Uint8Array(hashBuffer));
+        //     const hashHex= hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        //     return hashHex;
+        // }
+        // digestMessage(text).then(digestHex => alert(digestHex));
 
+
+        // let ABC = [];
+        // for (let i = 65; i <= 90; i++) {
+        //     str += String.fromCharCode(i);
+        // }
+
+        // alert(str);
+
+
+        // let set1 = new Set (1, 2, 3, 4);
+        // let set2 = new Set (3, 4, 5, 6);
+
+        // function setШntersection(set1, set2) {
+        //   let set3 = new Set();
+
+        // }
+        
+        // function crossSets(set1, set2) {
+        //   let set3 = new Set();
+        //   for(let elem of set1) {
+        //       if(set2.has(elem))
+        //           set3.add(elem);
+        //   }
+        //   return set3;
+        // }
+
+        // while(true) {
+        //   let result = prompt('Введите число или нажмите "Отмена" для выхода!');
+        //   if (result == null) {
+        //     break;
+        //   } else if (result!= '') {
+        //     if (cache[result] != null) {
+        //     console.log(cache[result])
+        //     } else {
+        //     cache[result] = calculateSum(+result)
+        //     console.log(cache[result])
+        //     }
+        //   }
+        // }
+
+        function hash8192(str) {
+            let sum = 0;
+            for (let i = 0; i < str.length; i++) {
+                sum += str.charCodeAt(i);    
+            }
+            let hash = sum % 8192;
+            return hash;
+        }
+alert(hash8192('Москва'))
+        
     </script>
 </body>
 </html>

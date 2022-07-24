@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        "use strict";
+
+        /**
+         * Проверяет вводимое значение.
+         * 
+         * @param {string} mesege Сообщение пользователю.
+         * 
+         * @return {number} num Возвращает проверенное значение.
+        */
+        function chekNumber(message) {
+            let num;
+            do {
+                num = prompt(message);
+                if (num == null) return null;
+                if (num != null) {
+                    num = +num;
+                    if (isNaN(num) || num <= 0 || !Number.isInteger(num)) {
+                        alert('Ввeдите целое число, больше нуля!');
+                    }
+                }
+            } while (isNaN(num) || num <= 0 || !Number.isInteger(num));
+            return num;        
+        }
+
+        function calculateSum(number) {
+            let sum = 0;
+            for (let i = 0; i < number; i++) {
+                sum += i;
+            }
+            return sum;
+        }
+
+        //Класс кэша
+        class CacheLRU {
+            cacheArr = new Array(3);
+
+            getCache() {
+                let val = chekNumber('Введите аргумент, для функции calculateSum.');
+                if (val != null) {
+                    let flag = false;
+                    for (let i = 0; i < this.cacheArr.length; i++) {
+                        if (this.cacheArr[i] != undefined) {
+                            if (this.cacheArr[i].value == val) {
+                                flag = true;
+                                let tmp = this.cacheArr[i];
+                                this.cacheArr.splice(i, 1);
+                                this.cacheArr.push(tmp);
+                                alert(tmp.valueCalc);
+                                break;
+                            }
+                        }
+                    }
+                    if (!flag) {
+                        this.setCache(val);
+                    }                    
+                }
+            }
+
+            setCache(val) {
+                let obj = {
+                    value: val,
+                    valueCalc: calculateSum(val),
+                }
+                this.cacheArr.push(obj);
+                this.cacheArr.shift();
+
+                alert(obj.valueCalc+'  Посчитаное значение');
+            }
+        }
+        //_________________________________________________________
+
+        alert('Программа вычисляет значение функции calculateSum, с использованием кеширования LRU.');
+        alert('Для пользования функцией, нажимайте кнопку = Посчитать.');
+
+        let cacheLRU = new CacheLRU();
+
+        console.log(cacheLRU.cacheArr);
+
+    </script>
+    <button onclick="cacheLRU.getCache()">Посчитать</button>
+</body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        "use strict";
+
+        /**
+         * Проверяет вводимое значение.
+         * 
+         * @param {string} mesege Сообщение пользователю.
+         * 
+         * @return {number} num Возвращает проверенное значение.
+        */
+        function chekNumber(message) {
+            let num;
+            do {
+                num = prompt(message);
+                if (num == null) return false;
+                if (num != null) {
+                    num = +num;
+                    if (isNaN(num) || num <= 0 || !Number.isInteger(num)) {
+                        alert('Ввeдите целое число, больше нуля!');
+                    }
+                }
+            } while (isNaN(num) || num <= 0 || !Number.isInteger(num));
+            return num;        
+        }
+
+        //Класс велосопидист
+        class Cyclist {
+            static countCyclist = 0;
+            static min = 10;
+            static max = 50;
+            
+            constructor(surname, name, country) {
+                Cyclist.countCyclist++;
+                this.cyclistNumber = Cyclist.countCyclist;
+                this.surname = surname;//фамилия
+                this.name = name;
+                this.country = country;
+                this.ratingCyclist = Math.round(Math.random() * (Cyclist.max - Cyclist.min) + Cyclist.min);
+            }
+
+            
+
+
+        }
+
+        class Country {
+            ratingCountry;
+
+            constructor(cyclistsCountry, country) {
+                this.cyclistsCountry = cyclistsCountry;//массив
+                this.country = country;
+            }
+
+
+
+
+        }
+
+        class FirstRound {
+            amountStage;
+
+            constructor() {
+                
+            }
+
+        }
+
+        class SecondRound {
+            amountStage = 2;
+
+            constructor() {
+
+            }
+
+    
+        }
+
+        //____________________________________________________________
+
+        let cyclistArr = [
+            [
+            new Cyclist('Shilov', 'Anton', 'Russia'),
+            new Cyclist('Borisov', 'Ivan', 'Russia'),
+            new Cyclist('Kusnecov', 'Oleg', 'Russia'),
+            new Cyclist('Ivanov', 'Pavel', 'Russia'),
+            ],
+            [
+            new Cyclist('Monti', 'Abele', 'Italy'),
+            new Cyclist('Rossi', 'Andrea', 'Italy'),
+            new Cyclist('Esposito', 'Mario', 'Italy'),
+            new Cyclist('Bruno', 'Fernando', 'Italy'),
+            ],
+            [
+            new Cyclist('Nielsen', 'Peter', 'Denmark'),
+            new Cyclist('Andersen', 'Martin', 'Denmark'),
+            new Cyclist('Thomsen', 'Hans', 'Denmark'),
+            new Cyclist('Poulsen', 'Ole', 'Denmark'),
+            ],
+            [
+            new Cyclist('Peeters', 'Alexis', 'Belgium'),
+            new Cyclist('Janssens', 'Clement', 'Belgium'),
+            new Cyclist('Willems', 'Jelle', 'Belgium'),
+            new Cyclist('Goossens', 'Louis', 'Belgium'),
+            ],
+            [
+            new Cyclist('Balestre', 'Andre', 'France'),
+            new Cyclist('Guichard', 'Bernard', 'France'),
+            new Cyclist('Dufour', 'Lammert', 'France'),
+            new Cyclist('de La Fare', 'Mishel', 'France'),
+            ],
+            [
+            new Cyclist('Fischer', 'Peter', 'Germany'),
+            new Cyclist('Schneider', 'Stephan', 'Germany'),
+            new Cyclist('Meyer', 'Uwe', 'Germany'),
+            new Cyclist('Müller', 'Jorg', 'Germany'),
+            ],
+            [
+            new Cyclist('Alonso', 'Agustín', 'Spain'),
+            new Cyclist('Ferrer', 'Gustavo', 'Spain'),
+            new Cyclist('Castillo', 'Benito', 'Spain'),
+            new Cyclist('Rubio', 'Francisco', 'Spain'),
+            ],
+            [
+            new Cyclist('Silva', 'Alessandro', 'Portugal'),
+            new Cyclist('Ferreira', 'Caio', 'Portugal'),
+            new Cyclist('Oliveira', 'Diogo', 'Portugal'),
+            new Cyclist('Rodrigues', 'Elvis', 'Portugal'),
+            ],
+            [
+            new Cyclist('Williams', 'Ethan', 'USA'),
+            new Cyclist('Smith', 'Michael', 'USA'),
+            new Cyclist('Thompson', 'Jacob', 'USA'),
+            new Cyclist('Scott', 'Oscar', 'USA'),
+            ],
+            [
+            new Cyclist('Abramson', 'Jack', 'Great Britain'),
+            new Cyclist('Cook', 'Charley', 'Great Britain'),
+            new Cyclist('Dyson', 'George', 'Great Britain'),
+            new Cyclist('Goodman', 'Harry', 'Great Britain'),
+            ],
+        ]
+
+        const nameCountry = [
+            'Russia',
+            'Italy',
+            'Denmark',
+            'Belgium',
+            'France',
+            'Germany',
+            'Spain',
+            'Portugal',
+            'USA',
+            'Great Britain',
+        ]
+
+        const arrCountry = [];
+        for (let i = 0; i < nameCountry.length; i++) {
+            arrCountry.push(new Country(cyclistArr[i], nameCountry[i]))
+        }
+
+        const N = chekNumber('Введите число этапов первого круга!');
+        if (N !== false) {
+            const firstRound = new FirstRound
+            firstRound.amountStage = N;
+
+
+
+
+
+        }
+        console.log(arrCountry);
+    </script>
+</body>
+</html>

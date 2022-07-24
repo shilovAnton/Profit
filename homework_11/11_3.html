@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        "use strict";
+
+        /**
+         * Функция генерит хеш в 16-ой системе счисления.
+         * 
+         * @param {string} str Строка
+         * 
+         * @return {number} hash Сгенерированный хеш.
+        */
+        function hash256(str) {
+            let sum = 0;
+            for (let i = 0; i < str.length; i++) {
+                sum += str.charCodeAt(i);    
+            }
+            let hash = sum % 256;
+            hash = hash.toString(16);
+            return hash;
+        }
+        //_____________________________________________________
+
+        alert('Программа возвращает пароли у которых хеш совпадает с хешом от пароля = qwerty!');
+
+        //формируем массивы
+        let arr123 = [];
+        for (let i = 0; i <= 9; i++) {
+            arr123 += String(i);
+        }
+        //A-Z: 65-90
+        let ABC = [];
+        for (let i = 65; i <= 90; i++) {
+            ABC += String.fromCharCode(i);
+        }
+        //a-z: 97-122 
+        let abc = [];
+        for (let i = 97; i <= 122; i++) {
+            abc += String.fromCharCode(i);
+        }
+
+        //формируем массив значений пароля
+        let arr = [];
+        for (let i = 0; i < arr123.length; i++) {
+            for (let j = 0; j < ABC.length; j++) {
+                arr.push(arr123[i] + ABC[j]);
+                arr.push(ABC[j] + arr123[i]);
+            }  
+        }
+        for (let i = 0; i < ABC.length; i++) {
+            for (let j = 0; j < abc.length; j++) {
+                arr.push(ABC[i] + abc[j]);
+                arr.push(abc[j] + ABC[i]);
+            }
+        }
+        for (let i = 0; i < abc.length; i++) {
+            for (let j = 0; j < arr123.length; j++) {
+                arr.push(abc[i] + arr123[j]);
+                arr.push(arr123[j] + abc[i]);
+            }
+        }
+        for (let i = 0; i < arr123.length; i++) {
+            for (let j = 0; j < arr123.length; j++) {
+                arr.push(arr123[i] + arr123[j]);
+            }  
+        }
+        for (let i = 0; i < ABC.length; i++) {
+            for (let j = 0; j < ABC.length; j++) {
+                arr.push(ABC[i] + ABC[j]);
+            }  
+        }
+        for (let i = 0; i < abc.length; i++) {
+            for (let j = 0; j < abc.length; j++) {
+                arr.push(abc[i] + abc[j]);
+            }  
+        }
+
+        //ищем коллизии
+        let result = [];
+        for (let i = 0; i < arr.length; i++) {
+            if (hash256(arr[i]) == hash256('qwerty')) {
+                result.push(arr[i]);
+            } 
+        }
+
+        //________________________________________________
+
+        alert('Результат выведется в консоль!');
+        console.log(result);  
+    </script>
+</body>
+</html>

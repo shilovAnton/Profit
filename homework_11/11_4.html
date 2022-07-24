@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Вход на сайт</title>
+    </head>
+    <body>
+       <script>
+            "use strict";
+
+            alert('В данной программе реалезованна возможность зарегестрироваться и войти на сайт! (В консоле массив юзеров)');
+
+            var users = [];
+
+            console.log(users);
+
+            //_____________________________________________________
+            
+            /**
+             * Функция генерит хеш в 16-ой системе счисления.
+             * 
+             * @param {string} str Строка
+             * 
+             * @return {number} hash Сгенерированный хеш.
+            */
+            function hash256(str) {
+                let sum = 0;
+                for (let i = 0; i < str.length; i++) {
+                    sum += str.charCodeAt(i);    
+                }
+                let hash = sum % 256;
+                hash = hash.toString(16);
+                return hash;
+            }
+
+            /**
+             * Проверяет вводимое значение на пустоту.
+             * 
+             * @param {string} mesege Сообщение пользователю.
+             * 
+             * @return {string} str Возвращает проверенное значение.
+            */
+            function chek(message) {
+                let str;
+                do {
+                    str = prompt(message);
+                    if (str == null) {
+                        break;
+                    }
+                    str = str.trim();
+                    if (str == '') {
+                        alert('Поле должно быть заполнено!');
+                    }
+                } while (str == '');
+                return str;        
+            }
+
+            /**
+             * Регестрирует пользователя.
+             * 
+             * @param {any[]} users Массив объектов.
+            */
+            function signUp() {
+                let name = chek('Введите имя пользователя!');
+                if (name != null) {
+                    let flag = true;
+                    if (users.length > 0) {
+                        for (let i = 0; i < users.length; i++) {
+                            if (name == users[i].name) {
+                                flag = false;
+                                alert('Имя пользователя уже существует!');
+                                break;
+                            }                  
+                        }
+                    }
+                    if (flag) {
+                        let password = chek('Введите пароль!');
+                        if (password != null) {
+                            let user = {
+                                name: name,
+                                password: hash256(password),
+                            }
+                            users.push(user);
+                            alert('Вы успешно зарегестрированны!');                             
+                        }
+                    }                  
+                }
+            }
+
+            /**
+             * Осуществляет вход.
+             * 
+             * @param {any[]} users Массив объектов.
+            */
+            function signIn() {
+                let name = chek('Введите имя пользователя!');
+                if (name != null) {
+                    let flag = true;
+                    let i;
+                    if (users.length > 0) {
+                        for (i = 0; i < users.length; i++) {
+                            if (name == users[i].name) {
+                                flag = true;
+                                break;             
+                            }
+                            flag = false;
+                        }
+                    } else {
+                    flag = false;
+                    }
+                    if (flag) {
+                        let pass;
+                        do {
+                            pass = chek('Введите пароль!');
+                            if (pass == null) {
+                                break;
+                            }
+                            if (hash256(pass) == users[i].password) {
+                                alert('Вы успешно зашли на сайт!');
+                            } else {
+                                alert('Неверный пароль!');
+                                pass = false;
+                            }
+                        } while (!pass);
+                    } else {
+                        alert('Пользователя с этим именем не существует!');
+                    }                    
+                }
+            }
+            
+
+        </script>
+        <button onclick="signUp()">Зарегистрироваться</button>
+        <button onclick="signIn()">Войти</button>
+    </body>
+</html>

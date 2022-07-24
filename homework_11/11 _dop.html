@@ -26,14 +26,31 @@
             hash = hash.toString(16);
             return hash;
         }
+
         //_____________________________________________________
 
-        alert('Программа возвращает хеш, в шестнадцатиричной системе счислеия!');
+        alert('Программа осуществляет подбор первого попавшегося паролья с таким же хешем.');
 
-        let param = prompt('Ведите значение для хеширования');
-        if (param != null) {
-            alert(hash256(param));
-        }  
+        let password = prompt('Ведите пароль, для подбора!');
+        let digit = 1;
+        let limiterDigit = 10;
+        let hackPassword;
+        let flag = true;
+        while (flag) {
+            for (let i = 0; i < limiterDigit; i++) {
+                hackPassword = String(i);
+                while (hackPassword.length < digit) {
+                    hackPassword = '0' + hackPassword;
+                }
+                if (hash256(hackPassword) == hash256(password)) {
+                    alert('Подобран пароль = ' + hackPassword);
+                    flag = false;
+                    break;
+                }
+            }
+            digit += 1;
+            limiterDigit *= 10;
+        }
     </script>
 </body>
 </html>
